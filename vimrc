@@ -58,3 +58,5 @@ map <C-n> :NERDTreeToggle<CR>
 vmap <C-C> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe  <CR><CR>
  " paste from buffer
 map <C-V> :r ~/.vimbuffer<CR>
+
+:set formatoptions-=cro " disable auto comment
