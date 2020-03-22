@@ -28,6 +28,8 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 "
 
+set t_ut=""  "DO NOT DISABLE ON WHEN USING WINDOWS
+
 syntax enable
 set tabstop=4
 set shiftwidth=4
@@ -40,13 +42,15 @@ set autoindent
 
 set showcmd " Show (partial) command in status line.
 set showmatch " Show matching brackets.
-"set ignorecase›› " Do case insensitive matching
+set ignorecase " Do case insensitive matching
 "set smartcase› › " Do smart case matching
-"set incsearch› › " Incremental search
+set incsearch " Incremental search
 "set autowrite› › " Automatically save before commands like :next and :make
 "set hidden›› " Hide buffers when they are abandoned
 "set mouse=a› › " Enable mouse usage (all modes)
+set hlsearch " highlight search matches
 
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " disable auto comment
 colorscheme jellybeans
 let g:jellybeans_overrides = {
             \    'background': { 'guibg': '151515' },
@@ -59,4 +63,3 @@ vmap <C-C> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe  <C
  " paste from buffer
 map <C-V> :r ~/.vimbuffer<CR>
 
-:set formatoptions-=cro " disable auto comment
