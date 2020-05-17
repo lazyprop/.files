@@ -22,6 +22,7 @@ Plugin 'tomasiser/vim-code-dark'
 Plugin 'zacanger/angr.vim'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'kristijanhusak/vim-hybrid-material'
+Plugin 'vimwiki/vimwiki'
 "
 " " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -34,6 +35,7 @@ syntax enable
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set relativenumber
 set number
 filetype indent on
 set autoindent
@@ -63,3 +65,5 @@ vmap <C-C> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe  <C
  " paste from buffer
 map <C-V> :r ~/.vimbuffer<CR>
 
+" VimWiki
+filetype plugin on
