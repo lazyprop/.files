@@ -1,5 +1,4 @@
-set nocompatible              " required
-filetype off                  " required
+filetype on                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -23,6 +22,9 @@ Plugin 'zacanger/angr.vim'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'kristijanhusak/vim-hybrid-material'
 Plugin 'vimwiki/vimwiki'
+Plugin 'rakr/vim-one'
+Plugin 'arcticicestudio/nord-vim'
+Plugin 'lervag/vimtex'
 "
 " " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -39,6 +41,7 @@ set relativenumber
 set number
 filetype indent on
 set autoindent
+filetype plugin on
 
 "let python_highlight_all = 1
 
@@ -52,18 +55,27 @@ set incsearch " Incremental search
 "set mouse=a› › " Enable mouse usage (all modes)
 set hlsearch " highlight search matches
 
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " disable auto comment
-colorscheme jellybeans
-let g:jellybeans_overrides = {
-            \    'background': { 'guibg': '151515' },
-            \}
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " disable auto comment on hitting enter
+
+colorscheme nord
+
+" Necessary when using Jellybeans theme
+" Overrides the background colour
+"let g:jellybeans_overrides = {
+"            \    'background': { 'guibg': '151515' },
+"            \}
+
+
 " Maps
-map <C-n> :NERDTreeToggle<CR>
+noremap <C-n> :NERDTreeToggle<CR>
 
-" copy (write) highlighted text to .vimbuffer
-vmap <C-C> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe  <CR><CR>
- " paste from buffer
-map <C-V> :r ~/.vimbuffer<CR>
+vnoremap <C-C> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe  <CR><CR>  " copy (write) highlighted text to .vimbuffer
+noremap <C-V> :r ~/.vimbuffer<CR>    " paste from buffer
 
-" VimWiki
-filetype plugin on
+
+augroup AutoMake
+    autocmd!
+
+    autocmd BufWrite *.c make
+    autocmd BufWrite *.cpp make
+augroup END
