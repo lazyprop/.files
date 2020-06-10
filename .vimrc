@@ -25,6 +25,7 @@ Plugin 'vimwiki/vimwiki'
 Plugin 'rakr/vim-one'
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'lervag/vimtex'
+Plugin 'rust-lang/rust.vim'
 "
 " " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -43,6 +44,9 @@ filetype indent on
 set autoindent
 filetype plugin on
 
+set splitright  " automatically open new split panes to right
+set splitbelow  " automatically open new split panes to below
+
 "let python_highlight_all = 1
 
 set showcmd " Show (partial) command in status line.
@@ -54,6 +58,7 @@ set incsearch " Incremental search
 "set hidden›› " Hide buffers when they are abandoned
 "set mouse=a› › " Enable mouse usage (all modes)
 set hlsearch " highlight search matches
+set shortmess=a
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " disable auto comment on hitting enter
 
@@ -73,9 +78,9 @@ vnoremap <C-C> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe
 noremap <C-V> :r ~/.vimbuffer<CR>    " paste from buffer
 
 
-augroup AutoMake
-    autocmd!
+"augroup AutoMake
+    "autocmd!
 
-    autocmd BufWrite *.c make
-    autocmd BufWrite *.cpp make
-augroup END
+    "autocmd BufWrite *.c, *.cpp  make
+    "autocmd QuickFixCmdPost * copen
+"augroup END

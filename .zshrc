@@ -99,3 +99,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 eval "$(direnv hook zsh)"
+
+source <(navi widget zsh)   # Enable Navi Cheatsheet Widget. Ctrl+G is default.
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

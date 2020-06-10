@@ -2,9 +2,13 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+LS_COLORS="ow=01;36;40" && export LS_COLORS
+#test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
+source ~/.cargo/env
+
 exec zsh
 
-cd /mnt/e/kalashnikov
+alias gohome="cd /mnt/e/kalashnikov"
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -108,6 +112,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -118,6 +123,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+
 
 
 
