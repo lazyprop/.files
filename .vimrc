@@ -26,6 +26,9 @@ Plugin 'rakr/vim-one'
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'lervag/vimtex'
 Plugin 'rust-lang/rust.vim'
+Plugin 'AlphaMycelium/pathfinder.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Bundle 'tpope/vim-markdown'
 "
 " " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -76,6 +79,8 @@ noremap <C-n> :NERDTreeToggle<CR>
 
 vnoremap <C-C> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe  <CR><CR>  " copy (write) highlighted text to .vimbuffer
 noremap <C-V> :r ~/.vimbuffer<CR>    " paste from buffer
+
+let g:vimwiki_list = [{'path': '/mnt/e/kalashnikov/wiki','index': 'Home', 'syntax': 'markdown', 'ext': '.wiki'}]
 
 
 "augroup AutoMake
