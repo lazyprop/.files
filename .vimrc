@@ -28,7 +28,8 @@ Plugin 'lervag/vimtex'
 Plugin 'rust-lang/rust.vim'
 Plugin 'AlphaMycelium/pathfinder.vim'
 Plugin 'editorconfig/editorconfig-vim'
-Bundle 'tpope/vim-markdown'
+Plugin 'tpope/vim-markdown'
+Plugin 'ryanoasis/vim-devicons'
 "
 " " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -46,6 +47,7 @@ set number
 filetype indent on
 set autoindent
 filetype plugin on
+set encoding=UTF-8
 
 set splitright  " automatically open new split panes to right
 set splitbelow  " automatically open new split panes to below
@@ -80,7 +82,7 @@ noremap <C-n> :NERDTreeToggle<CR>
 vnoremap <C-C> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe  <CR><CR>  " copy (write) highlighted text to .vimbuffer
 noremap <C-V> :r ~/.vimbuffer<CR>    " paste from buffer
 
-let g:vimwiki_list = [{'path': '/mnt/e/kalashnikov/wiki','index': 'Home', 'syntax': 'markdown', 'ext': '.wiki'}]
+let g:vimwiki_list = [{'path': '/mnt/e/kalashnikov/wiki','index': 'Home', 'syntax': 'markdown', 'ext': '.md'}]
 
 
 "augroup AutoMake
