@@ -11,7 +11,7 @@ Plugin 'preservim/nerdtree'                     " file explorer
 Plugin 'christoomey/vim-tmux-navigator'         " use ctrl+h/j/k/l for navigating buffers
 Plugin 'vimwiki/vimwiki'
 Plugin 'arcticicestudio/nord-vim'               " nord color scheme
-Plugin 'lervag/vimtex'                          " latex plugin
+Plugin 'lervag/vimtex'
 Plugin 'rust-lang/rust.vim'
 Plugin 'tpope/vim-markdown'                     " markdown syntax highlighting
 Plugin 'ryanoasis/vim-devicons'                 " devicons support
@@ -43,12 +43,14 @@ set splitbelow  " automatically open new split panes to below
 " disable auto comment on hitting enter
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+inoremap ;; <Esc>
+set timeoutlen=200
 
 
 """""""""""""""""""
 " search options
 """""""""""""""""""
-"set showcmd " Show (partial) command in status line.
+set showcmd " Show (partial) command in status line.
 set showmatch " Show matching brackets.
 set ignorecase " Do case insensitive matching
 "set smartcase› › " Do smart case matching
@@ -100,8 +102,8 @@ noremap <C-n> :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""
 "   wsl
 """""""""""""""""""""""""""""""""""""""
-vnoremap <C-C> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe  <CR><CR>  " copy (write) highlighted text to .vimbuffer
-noremap <C-V> :r ~/.vimbuffer<CR>    " paste from buffer
+"vnoremap <C-C> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe  <CR><CR>  " copy (write) highlighted text to .vimbuffer
+"noremap <C-V> :r ~/.vimbuffer<CR>    " paste from buffer
 set t_ut=""
 
 
