@@ -1,7 +1,4 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
+# If you come from bash you might have to change your $PATH.  # export PATH=$HOME/bin:/usr/local/bin:$PATH # Path to your oh-my-zsh installation.
 export ZSH="/home/n1tro/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -9,6 +6,10 @@ export ZSH="/home/n1tro/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="norm"
+
+source ~/.cargo/env
+LS_COLORS="ow=01;36;40" && export LS_COLORS
+stty -ixon
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -100,7 +101,13 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(direnv hook zsh)"
 
-source <(navi widget zsh)   # Enable Navi Cheatsheet Widget. Ctrl+G is default.
+source < (navi widget zsh)   # Enable Navi Cheatsheet Widget. Ctrl+G is default.
 
+source ~/.cargo/env
+LS_COLORS="ow=01;36;40" && export LS_COLORS
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+stty -ixon

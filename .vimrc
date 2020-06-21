@@ -16,6 +16,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'tpope/vim-markdown'                     " markdown syntax highlighting
 Plugin 'ryanoasis/vim-devicons'                 " devicons support
 Plugin 'itchyny/lightline.vim'                  " statusline plugin
+Plugin 'michaeljsmith/vim-indent-object'        " add textobjects for indent blocks
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -42,10 +43,6 @@ set splitbelow  " automatically open new split panes to below
 
 " disable auto comment on hitting enter
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-inoremap ;; <Esc>
-set timeoutlen=200
-
 
 """""""""""""""""""
 " search options
@@ -111,3 +108,12 @@ set t_ut=""
 "   vimwiki
 """"""""""""""""""""""""""""""""""""""""
 let g:vimwiki_list = [{'path': '/mnt/e/kalashnikov/wiki','index': 'Home', 'syntax': 'markdown', 'ext': '.md'}]
+
+
+""""""""""""""""""""""""""""""""""""""""
+" custom maps
+""""""""""""""""""""""""""""""""""""""""
+
+" ctrl+s -> save file
+nnoremap <C-s> <Esc>:w<CR>
+inoremap <C-s> <Esc>:w<CR>
