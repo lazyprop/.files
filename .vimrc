@@ -117,3 +117,9 @@ let g:vimwiki_list = [{'path': '/mnt/e/kalashnikov/wiki','index': 'Home', 'synta
 " ctrl+s -> save file
 nnoremap <C-s> <Esc>:w<CR>
 inoremap <C-s> <Esc>:w<CR>
+
+
+""""""""""""""""""""""""""""""""""""""""
+"   competitive programming
+""""""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>cp :%!cat /mnt/e/kalashnikov/prog/competitive/template.cpp<CR>
