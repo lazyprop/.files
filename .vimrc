@@ -47,8 +47,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 set textwidth=80    " wrap text to 80 characters
 set colorcolumn=+1  " set colorcolumn to textwidth
-" highlight colorcolumn
-highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
 
 """""""""""""""""""
 " search
@@ -70,6 +68,8 @@ nnoremap <C-l> :set hlsearch!<CR>
 """""""""""""""""""""""""""""""""""""""
 colorscheme nord
 
+" highlight colorcolumn
+highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
 
 
 """""""""""""""""""""""""""""""""""""""
