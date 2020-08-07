@@ -7,16 +7,15 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'preservim/nerdtree'                     " file explorer
-Plugin 'christoomey/vim-tmux-navigator'         " use ctrl+h/j/k/l for navigating buffers
+Plugin 'preservim/nerdtree'
 Plugin 'vimwiki/vimwiki'
-Plugin 'arcticicestudio/nord-vim'               " nord color scheme
+Plugin 'arcticicestudio/nord-vim'
 Plugin 'lervag/vimtex'
 Plugin 'rust-lang/rust.vim'
-Plugin 'tpope/vim-markdown'                     " markdown syntax highlighting
-Plugin 'ryanoasis/vim-devicons'                 " devicons support
-Plugin 'itchyny/lightline.vim'                  " statusline plugin
-Plugin 'michaeljsmith/vim-indent-object'        " add textobjects for indent blocks
+Plugin 'tpope/vim-markdown'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'itchyny/lightline.vim'
+Plugin 'michaeljsmith/vim-indent-object'    " add textobjects for indent blocks
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -26,6 +25,8 @@ filetype plugin indent on    " required
 "   general
 """""""""""""""""""""""""""""""""""""""
 syntax enable
+syntax on       " enable syntax highlighting based on filetype
+set wildignore=*.o,*.obj,*.bak,*.exe
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -44,8 +45,13 @@ set splitbelow  " automatically open new split panes to below
 " disable auto comment on hitting enter
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+set textwidth=80    " wrap text to 80 characters
+set colorcolumn=+1  " set colorcolumn to textwidth
+" highlight colorcolumn
+highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+
 """""""""""""""""""
-" search options
+" search
 """""""""""""""""""
 set showcmd " Show (partial) command in status line.
 set showmatch " Show matching brackets.
@@ -55,8 +61,8 @@ set incsearch " Incremental search
 "set autowrite› › " Automatically save before commands like :next and :make
 "set hidden›› " Hide buffers when they are abandoned
 "set mouse=a› › " Enable mouse usage (all modes)
-set hlsearch " highlight search matches
-
+set hlsearch
+nnoremap <C-l> :set hlsearch!<CR>
 
 
 """""""""""""""""""""""""""""""""""""""
@@ -69,8 +75,9 @@ colorscheme nord
 """""""""""""""""""""""""""""""""""""""
 "   statusline (lightline)
 """""""""""""""""""""""""""""""""""""""
-set noshowmode                      " disable ---INSERT--- showing at the bottom since it is not needed
-set laststatus=2                    " IMPORTANT
+" disable ---INSERT--- showing at the bottom since it is not needed
+set noshowmode
+set laststatus=2    " IMPORTANT
 
 let g:lightline = {
     \ 'colorscheme': 'nord',
@@ -99,7 +106,8 @@ noremap <C-n> :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""
 "   wsl
 """""""""""""""""""""""""""""""""""""""
-"vnoremap <C-C> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe  <CR><CR>  " copy (write) highlighted text to .vimbuffer
+"vnoremap <C-C> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \|
+"clip.exe  <CR><CR>  " copy (write) highlighted text to .vimbuffer
 "noremap <C-V> :r ~/.vimbuffer<CR>    " paste from buffer
 set t_ut=""
 
@@ -107,7 +115,12 @@ set t_ut=""
 """"""""""""""""""""""""""""""""""""""""
 "   vimwiki
 """"""""""""""""""""""""""""""""""""""""
-let g:vimwiki_list = [{'path': '/mnt/e/kalashnikov/wiki','index': 'Home', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{
+            \ 'path': '/mnt/e/kalashnikov/wiki',
+            \ 'index': 'Home',
+            \ 'syntax': 'markdown',
+            \ 'ext': '.md'
+            \ }]
 
 
 """"""""""""""""""""""""""""""""""""""""
