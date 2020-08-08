@@ -12,7 +12,7 @@ Plugin 'vimwiki/vimwiki'
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'lervag/vimtex'
 Plugin 'rust-lang/rust.vim'
-Plugin 'tpope/vim-markdown'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'itchyny/lightline.vim'
 Plugin 'michaeljsmith/vim-indent-object'    " add textobjects for indent blocks
@@ -46,7 +46,6 @@ set splitbelow  " automatically open new split panes to below
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 set textwidth=80    " wrap text to 80 characters
-set colorcolumn=+1  " set colorcolumn to textwidth
 
 """""""""""""""""""
 " search
@@ -66,10 +65,13 @@ nnoremap <C-l> :set hlsearch!<CR>
 """""""""""""""""""""""""""""""""""""""
 "   colorscheme
 """""""""""""""""""""""""""""""""""""""
-colorscheme nord
+set colorcolumn=+1  " set colorcolumn to textwidth
+augroup MyColors
+    autocmd!
+    autocmd ColorScheme * highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+augroup END
 
-" highlight colorcolumn
-highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+colorscheme nord
 
 
 """""""""""""""""""""""""""""""""""""""
@@ -122,6 +124,9 @@ let g:vimwiki_list = [{
             \ 'ext': '.md'
             \ }]
 
+" don't consider non vimwiki .md files as vimwiki files
+let g:vimwiki_global_ext = 0 
+
 
 """"""""""""""""""""""""""""""""""""""""
 " custom maps
@@ -131,6 +136,14 @@ let g:vimwiki_list = [{
 nnoremap <C-s> <Esc>:w<CR>
 inoremap <C-s> <Esc>:w<CR>
 
+" automatically append closing characters
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
+
+inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+
+" get out of {}, (), '' etc
+inoremap <C-j> <Esc>/[)}"'\]>]<CR>:nohl<CR>a
 
 """"""""""""""""""""""""""""""""""""""""
 "   competitive programming
