@@ -16,6 +16,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'itchyny/lightline.vim'
 Plugin 'michaeljsmith/vim-indent-object'    " add textobjects for indent blocks
+Plugin 'neoclide/coc.nvim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -47,6 +48,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 set textwidth=80    " wrap text to 80 characters
 
+
 """""""""""""""""""
 " search
 """""""""""""""""""
@@ -68,7 +70,9 @@ nnoremap <C-l> :set hlsearch!<CR>
 set colorcolumn=+1  " set colorcolumn to textwidth
 augroup MyColors
     autocmd!
-    autocmd ColorScheme * highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+    autocmd ColorScheme * highlight ColorColumn cterm=reverse guibg=lightgrey
+    " change visual mode highlighting
+    autocmd ColorScheme * highlight Visual cterm=reverse guibg=lightgrey
 augroup END
 
 colorscheme nord
@@ -133,8 +137,11 @@ let g:vimwiki_global_ext = 0
 """"""""""""""""""""""""""""""""""""""""
 
 " ctrl+s -> save file
-nnoremap <C-s> <Esc>:w<CR>
-inoremap <C-s> <Esc>:w<CR>
+" nnoremap <C-s> <Esc>:w<CR>
+" inoremap <C-s> <Esc>:w<CR>
+
+" temporarily disable ctrl+c
+inoremap <C-c> <Nop>
 
 " automatically append closing characters
 inoremap {<CR>  {<CR>}<Esc>O
@@ -144,6 +151,17 @@ inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
 
 " get out of {}, (), '' etc
 inoremap <C-j> <Esc>/[)}"'\]>]<CR>:nohl<CR>a
+
+" use TAB to complete when typing words. else insert TABs as usual
+function! Tab_Or_Complete()
+	if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+        return "\<C-N>"
+    else
+        return "\<Tab>"
+    endif
+endfunction
+inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+set dictionary="/usr/dict/words"
 
 """"""""""""""""""""""""""""""""""""""""
 "   competitive programming
