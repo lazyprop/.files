@@ -2,20 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-#test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
-
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-cd /mnt/e/kalashnikov
-
-source ~/.cargo/env
 LS_COLORS="ow=01;36;40" && export LS_COLORS
-stty -ixon
 exec zsh
-LS_COLORS="ow=01;36;40" && export LS_COLORS
-source ~/.cargo/env
-stty -ixon
 
 # If not running interactively, don't do anything
 case $- in
@@ -131,12 +119,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-
-
-
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
