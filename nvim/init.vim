@@ -15,6 +15,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 Plug 'michaeljsmith/vim-indent-object'    " add textobjects for indent blocks
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/goyo.vim'
+Plug 'reedes/vim-pencil'
 
 call plug#end()
 
@@ -45,7 +47,6 @@ set splitbelow  " automatically open new split panes to below
 " disable auto comment on hitting enter
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-set textwidth=80    " wrap text to 80 characters
 
 
 """""""""""""""""""
@@ -69,7 +70,7 @@ nnoremap <C-l> :set hlsearch!<CR>
 set colorcolumn=+1  " set colorcolumn to textwidth
 augroup MyColors
     autocmd!
-    autocmd ColorScheme * highlight ColorColumn cterm=reverse guibg=lightgrey
+    "autocmd ColorScheme * highlight ColorColumn cterm=reverse guibg=lightgrey
     " change visual mode highlighting
     autocmd ColorScheme * highlight Visual cterm=reverse guibg=lightgrey
 augroup END
@@ -140,6 +141,8 @@ let g:vimwiki_global_ext = 0
 " inoremap <C-s> <Esc>:w<CR>
 
 " temporarily disable ctrl+c
+nnoremap <C-c> <Nop>
+vnoremap <C-c> <Nop>
 inoremap <C-c> <Nop>
 
 " automatically append closing characters
@@ -181,7 +184,6 @@ endfunction
 function! InitCP()
     exec "%!cat /mnt/e/kalashnikov/prog/competitive/template.cpp"
     write
-    call InitIO()
 endfunction
 
 function! AutoTest()
