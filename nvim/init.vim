@@ -40,9 +40,13 @@ filetype indent on
 set autoindent
 filetype plugin on
 set encoding=UTF-8
+set noswapfile " vim won't make swap files
 
 set splitright  " automatically open new split panes to right
 set splitbelow  " automatically open new split panes to below
+
+let mapleader = " "  " map leader to <Space>
+
 
 " disable auto comment on hitting enter
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
