@@ -17,6 +17,8 @@ Plug 'michaeljsmith/vim-indent-object'    " add textobjects for indent blocks
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/goyo.vim'
 Plug 'reedes/vim-pencil'
+Plug 'voldikss/vim-floaterm'
+Plug 'mbbill/undotree'
 
 call plug#end()
 
@@ -47,10 +49,11 @@ set splitbelow  " automatically open new split panes to below
 
 let mapleader = " "  " map leader to <Space>
 
-
 " disable auto comment on hitting enter
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+" enable saving undo history to a file
+set undofile
 
 
 """""""""""""""""""
@@ -121,6 +124,19 @@ noremap <C-n> :NERDTreeToggle<CR>
 "noremap <C-V> :r ~/.vimbuffer<CR>    " paste from buffer
 set t_ut=""
 
+" copy stuff
+let s:clip = '/mnt/c/Windows/System32/clip.exe' 
+if executable(s:clip)
+    augroup WSLYank
+        autocmd!
+        autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
+    augroup end
+end
+
+" paste stuff
+"map <silent> "=p :r !powershell.exe -Command Get-Clipboard<CR>
+"map! <silent> <C-r>= :r !powershell.exe -Command Get-Clipboard<CR>
+"noremap "+p :exe 'norm a'.system('/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -Command Get-Clipboard')<CR>
 
 """"""""""""""""""""""""""""""""""""""""
 "   vimwiki
@@ -175,6 +191,8 @@ tnoremap <Esc> <C-\><C-n>
 " use ctrl+backspace to delete previous word
 inoremap <C-BS> <C-\><C-o>db
 
+" use <Leader>tt to toggle floating terminal
+nnoremap <Leader>tt :FloatermToggle<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""
@@ -199,3 +217,15 @@ endfunction
 autocmd filetype cpp nnoremap <Leader>cp :call InitCP()<CR>
 autocmd filetype cpp nnoremap <Leader>io :call InitIO()<CR>
 autocmd filetype cpp nnoremap <Leader>mk :w<bar> call AutoTest()<CR>
+
+
+""""""""""""""""""""""""""""""""""""""""
+" vim markdown
+""""""""""""""""""""""""""""""""""""""""
+let g:vim_markdown_folding_disabled = 1 " disable folding
+let g:vim_markdown_strikethrough = 1    " use ~~ to strikethrough
+" disable automatic indentation when inserting new list item
+let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_auto_insert_bullets = 1
+
+let g:vim_markdown_math = 1 " enable LaTeX math
