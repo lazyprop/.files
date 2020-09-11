@@ -1,5 +1,3 @@
-filetype on                  " required
-
 """""""""""""""""""""""""""""""""""""""
 "   Plugins
 """""""""""""""""""""""""""""""""""""""
@@ -8,21 +6,31 @@ call plug#begin()
 
 Plug 'preservim/nerdtree'
 Plug 'vimwiki/vimwiki'
-Plug 'arcticicestudio/nord-vim'
-Plug 'rust-lang/rust.vim'
-Plug 'plasticboy/vim-markdown'
+" Plug 'rust-lang/rust.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'itchyny/lightline.vim'
 Plug 'michaeljsmith/vim-indent-object'    " add textobjects for indent blocks
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+Plug 'mhinz/vim-startify'
+
+" Writing
 Plug 'junegunn/goyo.vim'
 Plug 'reedes/vim-pencil'
 Plug 'voldikss/vim-floaterm'
 Plug 'mbbill/undotree'
+Plug 'plasticboy/vim-markdown'
+ 
+" Asthetics
+Plug 'dracula/vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
 filetype plugin indent on    " required
+filetype on                  " required
 
 
 """""""""""""""""""""""""""""""""""""""
@@ -43,6 +51,7 @@ set autoindent
 filetype plugin on
 set encoding=UTF-8
 set noswapfile " vim won't make swap files
+set nowrap
 
 set splitright  " automatically open new split panes to right
 set splitbelow  " automatically open new split panes to below
@@ -55,6 +64,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " enable saving undo history to a file
 set undofile
 
+" set current directory to the file currently editing
+set autochdir
 
 """""""""""""""""""
 " search
@@ -74,15 +85,16 @@ nnoremap <C-l> :set hlsearch!<CR>
 """""""""""""""""""""""""""""""""""""""
 "   colorscheme
 """""""""""""""""""""""""""""""""""""""
-set colorcolumn=+1  " set colorcolumn to textwidth
+" set colorcolumn=+1  " set colorcolumn to textwidth
 augroup MyColors
     autocmd!
     "autocmd ColorScheme * highlight ColorColumn cterm=reverse guibg=lightgrey
     " change visual mode highlighting
-    autocmd ColorScheme * highlight Visual cterm=reverse guibg=lightgrey
+    " autocmd ColorScheme * highlight Visual cterm=reverse guibg=lightgrey
+
 augroup END
 
-colorscheme nord
+colorscheme onedark
 
 
 """""""""""""""""""""""""""""""""""""""
@@ -93,7 +105,7 @@ set noshowmode
 set laststatus=2    " IMPORTANT
 
 let g:lightline = {
-    \ 'colorscheme': 'nord',
+    \ 'colorscheme': 'onedark',
     \ 'component_function': {
     \   'fileformat': 'LightlineFileformat',
     \   'filetype': 'LightllineFiletype',
@@ -117,7 +129,7 @@ noremap <C-n> :NERDTreeToggle<CR>
 
 
 """""""""""""""""""""""""""""""""""""""
-"   wsl
+"   windows
 """""""""""""""""""""""""""""""""""""""
 "vnoremap <C-C> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \|
 "clip.exe  <CR><CR>  " copy (write) highlighted text to .vimbuffer
@@ -125,25 +137,28 @@ noremap <C-n> :NERDTreeToggle<CR>
 set t_ut=""
 
 " copy stuff
-let s:clip = '/mnt/c/Windows/System32/clip.exe' 
-if executable(s:clip)
-    augroup WSLYank
-        autocmd!
-        autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
-    augroup end
-end
+" let s:clip = '/mnt/c/Windows/System32/clip.exe' 
+" if executable(s:clip)
+    " augroup WSLYank
+        " autocmd!
+        " autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
+    " augroup end
+" end
 
 " paste stuff
 "map <silent> "=p :r !powershell.exe -Command Get-Clipboard<CR>
 "map! <silent> <C-r>= :r !powershell.exe -Command Get-Clipboard<CR>
 "noremap "+p :exe 'norm a'.system('/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -Command Get-Clipboard')<CR>
 
+" set ctrl+v to paste (nvim-qt)
+inoremap <C-v> <C-r>+
+
 """"""""""""""""""""""""""""""""""""""""
 "   vimwiki
 """"""""""""""""""""""""""""""""""""""""
 let g:vimwiki_list = [{
-            \ 'path': '/mnt/e/kalashnikov/wiki',
-            \ 'index': 'Home',
+            \ 'path': 'E:\kalashnikov\notes',
+            \ 'index': 'home',
             \ 'syntax': 'markdown',
             \ 'ext': '.md'
             \ }]
@@ -161,9 +176,9 @@ let g:vimwiki_global_ext = 0
 " inoremap <C-s> <Esc>:w<CR>
 
 " temporarily disable ctrl+c
-nnoremap <C-c> <Nop>
-vnoremap <C-c> <Nop>
-inoremap <C-c> <Nop>
+" nnoremap <C-c> <Nop>
+" vnoremap <C-c> <Nop>
+" inoremap <C-c> <Nop>
 
 " automatically append closing characters
 inoremap {<CR>  {<CR>}<Esc>O
@@ -183,7 +198,7 @@ function! Tab_Or_Complete()
     endif
 endfunction
 inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
-set dictionary="/usr/dict/words"
+" set dictionary="/usr/dict/words"
 
 " use <Esc> to exit terminal mode
 tnoremap <Esc> <C-\><C-n>
@@ -204,14 +219,14 @@ function InitIO()
 endfunction
 
 function! InitCP()
-    exec "%!cat /mnt/e/kalashnikov/prog/competitive/template.cpp"
+    exec "%!more E:\kalashnikov\prog\competitive\template.cpp"
     write
 endfunction
 
 function! AutoTest()
     exec "!g++ ".shellescape("%")." -o ".shellescape("%:r")
-    exec "!./".shellescape("%:r")." < in | cat > out"
-    exec "!rm ".shellescape("%:r")
+    exec "!.\".shellescape("%:r")." < in | cat > out"
+    exec "!del /f /a ".shellescape("%:r")
 endfunction
 
 autocmd filetype cpp nnoremap <Leader>cp :call InitCP()<CR>
@@ -229,3 +244,16 @@ let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_auto_insert_bullets = 1
 
 let g:vim_markdown_math = 1 " enable LaTeX math
+
+""""""""""""""""""""""""""""""""""""""""
+" vim startify
+""""""""""""""""""""""""""""""""""""""""
+let g:startify_bookmarks = [
+            \ 'C:\Users\Mandee\AppData\Local\nvim\init.vim',
+            \ 'E:\kalashnikov\',
+            \ 'E:\kalashnikov\prog\competitive\'
+            \]
+
+let g:startify_lists = [
+            \ {'type': 'bookmarks' , 'header': ['Bookmarks']}
+            \]
