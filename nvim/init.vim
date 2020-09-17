@@ -12,6 +12,7 @@ Plug 'michaeljsmith/vim-indent-object'    " add textobjects for indent blocks
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'mhinz/vim-startify'
+Plug 'vifm/vifm.vim'
 
 " Writing
 Plug 'junegunn/goyo.vim'
@@ -42,6 +43,7 @@ set wildignore=*.o,*.obj,*.bak,*.exe
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set nocompatible
 
 set relativenumber
 set number
@@ -67,6 +69,10 @@ set undofile
 " set current directory to the file currently editing
 set autochdir
 
+" set system clipboard
+inoremap <C-v> <C-r>+
+vnoremap <C-c> "+y
+
 """""""""""""""""""
 " search
 """""""""""""""""""
@@ -91,7 +97,6 @@ augroup MyColors
     "autocmd ColorScheme * highlight ColorColumn cterm=reverse guibg=lightgrey
     " change visual mode highlighting
     " autocmd ColorScheme * highlight Visual cterm=reverse guibg=lightgrey
-
 augroup END
 
 colorscheme onedark
@@ -109,8 +114,7 @@ let g:lightline = {
     \ 'component_function': {
     \   'fileformat': 'LightlineFileformat',
     \   'filetype': 'LightllineFiletype',
-    \ },
-    \ }
+    \ }}
 
 function! LightlineFileformat()
     return winwidth(0) > 70 ? &fileformat : ''
@@ -119,7 +123,6 @@ endfunction
 function! LightllineFiletype()
     return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
-
 
 
 """""""""""""""""""""""""""""""""""""""
@@ -150,8 +153,6 @@ set t_ut=""
 "map! <silent> <C-r>= :r !powershell.exe -Command Get-Clipboard<CR>
 "noremap "+p :exe 'norm a'.system('/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -Command Get-Clipboard')<CR>
 
-" set ctrl+v to paste (nvim-qt)
-inoremap <C-v> <C-r>+
 
 """"""""""""""""""""""""""""""""""""""""
 "   vimwiki
@@ -160,17 +161,17 @@ let g:vimwiki_list = [{
             \ 'path': 'E:\kalashnikov\notes',
             \ 'index': 'home',
             \ 'syntax': 'markdown',
-            \ 'ext': '.md'
+            \ 'ext': '.md',
+            \ 'automatic_nexted_syntaxes': 1
             \ }]
 
-" don't consider non vimwiki .md files vimwiki files
+" don't consider non vimwiki .md files .vimwiki files
 let g:vimwiki_global_ext = 0 
 
 
 """"""""""""""""""""""""""""""""""""""""
 " custom maps
 """"""""""""""""""""""""""""""""""""""""
-
 " ctrl+s -> save file
 " nnoremap <C-s> <Esc>:w<CR>
 " inoremap <C-s> <Esc>:w<CR>
@@ -197,14 +198,16 @@ function! Tab_Or_Complete()
         return "\<Tab>"
     endif
 endfunction
-inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+ "inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 " set dictionary="/usr/dict/words"
 
 " use <Esc> to exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 
 " use ctrl+backspace to delete previous word
-inoremap <C-BS> <C-\><C-o>db
+inoremap <C-BS> <C-w>
+tnoremap <C-BS> <C-w>
+cnoremap <C-BS> <C-w>
 
 " use <Leader>tt to toggle floating terminal
 nnoremap <Leader>tt :FloatermToggle<CR>
@@ -219,14 +222,14 @@ function InitIO()
 endfunction
 
 function! InitCP()
-    exec "%!more E:\kalashnikov\prog\competitive\template.cpp"
+    exec "%!more E:\\kalashnikov\\prog\\competitive\\template.cpp"
     write
 endfunction
 
 function! AutoTest()
-    exec "!g++ ".shellescape("%")." -o ".shellescape("%:r")
-    exec "!.\".shellescape("%:r")." < in | cat > out"
-    exec "!del /f /a ".shellescape("%:r")
+    exec "!g++ ".shellescape("%")
+    exec "!.\\a.exe < in > out"
+    exec "!del .\\a.exe"
 endfunction
 
 autocmd filetype cpp nnoremap <Leader>cp :call InitCP()<CR>
@@ -245,15 +248,32 @@ let g:vim_markdown_auto_insert_bullets = 1
 
 let g:vim_markdown_math = 1 " enable LaTeX math
 
+
 """"""""""""""""""""""""""""""""""""""""
 " vim startify
 """"""""""""""""""""""""""""""""""""""""
 let g:startify_bookmarks = [
-            \ 'C:\Users\Mandee\AppData\Local\nvim\init.vim',
+            \ 'C:\Users\Mandee\AppData\Local\nvim\',
+            \ 'E:\kalashnikov\prog\',
+            \ 'E:\kalashnikov\prog\competitive\',
             \ 'E:\kalashnikov\',
-            \ 'E:\kalashnikov\prog\competitive\'
+            \ 'E:\kalashnikov\dotfiles\',
+            \ 'E:\kalashnikov\jour\',
+            \ 'E:\kalashnikov\notes\'
             \]
 
 let g:startify_lists = [
             \ {'type': 'bookmarks' , 'header': ['Bookmarks']}
             \]
+
+""""""""""""""""""""""""""""""""""""""""
+" writing
+""""""""""""""""""""""""""""""""""""""""
+let g:pencil#wrapModeDefault = 'soft'
+let g:pencil#cursorwrap = 0
+augroup writing
+    autocmd!
+    autocmd FileType markdown,md,mkd call pencil#init()
+    autocmd FileType text,txt call pencil#init()
+    autocmd FileType vimwiki call pencil#init()
+augroup end
