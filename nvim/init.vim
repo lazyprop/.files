@@ -22,30 +22,29 @@ Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
-filetype plugin indent on    " required
-filetype on                  " required
-
 
 """""""""""""""""""""""""""""""""""""""
 "   general
 """""""""""""""""""""""""""""""""""""""
 syntax enable
-syntax on       " enable syntax highlighting based on filetype
 set wildignore=*.o,*.obj,*.bak,*.exe
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set nocompatible
 
 set relativenumber
 set number
 
-filetype indent on
-set autoindent
-filetype plugin on
 set encoding=UTF-8
-set noswapfile " vim won't make swap files
+set noswapfile " swapfiles are unnecessary and a PITA
 set nowrap
+
+" enable filetype detection, filetype plugin loading and indentation
+filetype plugin indent on
+
+" indentation
+set autoindent " maintain current indentation when new line
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set nocompatible
 
 set splitright  " automatically open new split panes to right
 set splitbelow  " automatically open new split panes to below
@@ -55,17 +54,26 @@ let mapleader = " "  " map leader to <Space>
 " disable auto comment on hitting enter
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" enable saving undo history to a file
-set undofile
-
-" set current directory to the file currently editing
-set autochdir
+set undofile " enable saving undo history to a file
+set autochdir " set current directory to the file currently editing
 
 " set system clipboard
 inoremap <C-v>  <C-O>:set paste<CR><C-r>+ <C-O>:set nopaste<CR><left>
 vnoremap <C-c> "+y
 
 nnoremap <Leader>st :Startify<CR>
+
+" use <Esc> to exit terminal mode
+tnoremap <Esc> <C-\><C-n>
+
+" use ctrl+backspace to delete previous word
+inoremap <C-BS> <C-w>
+tnoremap <C-BS> <C-w>
+cnoremap <C-BS> <C-w>
+
+" use <Leader>tt to toggle floating terminal
+nnoremap <Leader>tt :FloatermToggle<CR>
+
 
 """""""""""""""""""
 " search
@@ -91,58 +99,13 @@ colorscheme monochrome
 """""""""""""""""""""""""""""""""""""""
 "   statusline (lightline)
 """""""""""""""""""""""""""""""""""""""
-" disable ---INSERT--- showing at the bottom since it is not needed
-"set noshowmode
-
-" enable statusline
-" set laststatus=2
-
 " disable statusline. statuslines are unnecessary
 set laststatus=0
-
-let g:lightline = {
-    \ 'colorscheme': 'nord',
-    \ 'component_function': {
-    \   'fileformat': 'LightlineFileformat',
-    \   'filetype': 'LightllineFiletype',
-    \ }}
-
-function! LightlineFileformat()
-    return winwidth(0) > 70 ? &fileformat : ''
-endfunction
-" 
-function! LightllineFiletype()
-    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-endfunction
-
 
 """""""""""""""""""""""""""""""""""""""
 "   nerdtree
 """""""""""""""""""""""""""""""""""""""
 noremap <C-n> :NERDTreeToggle<CR>
-
-
-"""""""""""""""""""""""""""""""""""""""
-"   windows
-"""""""""""""""""""""""""""""""""""""""
-"vnoremap <C-C> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \|
-"clip.exe  <CR><CR>  " copy (write) highlighted text to .vimbuffer
-"noremap <C-V> :r ~/.vimbuffer<CR>    " paste from buffer
-set t_ut=""
-
-" copy stuff
-" let s:clip = '/mnt/c/Windows/System32/clip.exe' 
-" if executable(s:clip)
-    " augroup WSLYank
-        " autocmd!
-        " autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
-    " augroup end
-" end
-
-" paste stuff
-"map <silent> "=p :r !powershell.exe -Command Get-Clipboard<CR>
-"map! <silent> <C-r>= :r !powershell.exe -Command Get-Clipboard<CR>
-"noremap "+p :exe 'norm a'.system('/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -Command Get-Clipboard')<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""
@@ -158,50 +121,6 @@ let g:vimwiki_list = [{
 
 " don't consider non vimwiki .md files .vimwiki files
 let g:vimwiki_global_ext = 0 
-
-
-""""""""""""""""""""""""""""""""""""""""
-" custom maps
-""""""""""""""""""""""""""""""""""""""""
-" ctrl+s -> save file
-" nnoremap <C-s> <Esc>:w<CR>
-" inoremap <C-s> <Esc>:w<CR>
-
-" temporarily disable ctrl+c
-" nnoremap <C-c> <Nop>
-" vnoremap <C-c> <Nop>
-" inoremap <C-c> <Nop>
-
-" automatically append closing characters
-inoremap {<CR>  {<CR>}<Esc>O
-inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
-
-inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
-
-" get out of {}, (), '' etc
-inoremap <C-j> <Esc>/[)}"'\]>]<CR>:nohl<CR>a
-
-" use TAB to complete when typing words. else insert TABs as usual
-function! Tab_Or_Complete()
-	if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-        return "\<C-N>"
-    else
-        return "\<Tab>"
-    endif
-endfunction
- "inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
-" set dictionary="/usr/dict/words"
-
-" use <Esc> to exit terminal mode
-tnoremap <Esc> <C-\><C-n>
-
-" use ctrl+backspace to delete previous word
-inoremap <C-BS> <C-w>
-tnoremap <C-BS> <C-w>
-cnoremap <C-BS> <C-w>
-
-" use <Leader>tt to toggle floating terminal
-nnoremap <Leader>tt :FloatermToggle<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""
