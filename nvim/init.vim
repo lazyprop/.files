@@ -3,30 +3,22 @@
 """""""""""""""""""""""""""""""""""""""
 call plug#begin()
 
-
 Plug 'preservim/nerdtree'
 Plug 'vimwiki/vimwiki'
-" Plug 'rust-lang/rust.vim'
-Plug 'ryanoasis/vim-devicons'
-Plug 'michaeljsmith/vim-indent-object'    " add textobjects for indent blocks
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-Plug 'mhinz/vim-startify'
-Plug 'vifm/vifm.vim'
+Plug 'mbbill/undotree'
 
 " Writing
 Plug 'junegunn/goyo.vim'
 Plug 'reedes/vim-pencil'
 Plug 'voldikss/vim-floaterm'
-Plug 'mbbill/undotree'
+
+" Languages
 Plug 'plasticboy/vim-markdown'
  
 " Asthetics
-Plug 'dracula/vim'
-Plug 'arcticicestudio/nord-vim'
-Plug 'joshdick/onedark.vim'
-Plug 'rakr/vim-one'
-Plug 'itchyny/lightline.vim'
+Plug 'fxn/vim-monochrome' 
+Plug 'mhinz/vim-startify'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -70,8 +62,10 @@ set undofile
 set autochdir
 
 " set system clipboard
-inoremap <C-v> <C-r>+
+inoremap <C-v>  <C-O>:set paste<CR><C-r>+ <C-O>:set nopaste<CR><left>
 vnoremap <C-c> "+y
+
+nnoremap <Leader>st :Startify<CR>
 
 """""""""""""""""""
 " search
@@ -91,26 +85,23 @@ nnoremap <C-l> :set hlsearch!<CR>
 """""""""""""""""""""""""""""""""""""""
 "   colorscheme
 """""""""""""""""""""""""""""""""""""""
-" set colorcolumn=+1  " set colorcolumn to textwidth
-augroup MyColors
-    autocmd!
-    "autocmd ColorScheme * highlight ColorColumn cterm=reverse guibg=lightgrey
-    " change visual mode highlighting
-    " autocmd ColorScheme * highlight Visual cterm=reverse guibg=lightgrey
-augroup END
-
-colorscheme onedark
+colorscheme monochrome
 
 
 """""""""""""""""""""""""""""""""""""""
 "   statusline (lightline)
 """""""""""""""""""""""""""""""""""""""
 " disable ---INSERT--- showing at the bottom since it is not needed
-set noshowmode
-set laststatus=2    " IMPORTANT
+"set noshowmode
+
+" enable statusline
+" set laststatus=2
+
+" disable statusline. statuslines are unnecessary
+set laststatus=0
 
 let g:lightline = {
-    \ 'colorscheme': 'onedark',
+    \ 'colorscheme': 'nord',
     \ 'component_function': {
     \   'fileformat': 'LightlineFileformat',
     \   'filetype': 'LightllineFiletype',
@@ -119,7 +110,7 @@ let g:lightline = {
 function! LightlineFileformat()
     return winwidth(0) > 70 ? &fileformat : ''
 endfunction
-
+" 
 function! LightllineFiletype()
     return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
