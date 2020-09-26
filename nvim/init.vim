@@ -6,6 +6,7 @@ call plug#begin()
 Plug 'preservim/nerdtree'
 Plug 'vimwiki/vimwiki'
 Plug 'mbbill/undotree'
+Plug 'mhinz/vim-startify'
 
 " Writing
 Plug 'junegunn/goyo.vim'
@@ -17,7 +18,6 @@ Plug 'plasticboy/vim-markdown'
  
 " Asthetics
 Plug 'fxn/vim-monochrome' 
-Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
@@ -74,6 +74,8 @@ cnoremap <C-BS> <C-w>
 " use <Leader>tt to toggle floating terminal
 nnoremap <Leader>tt :FloatermToggle<CR>
 
+" enable colors in console nvim
+set termguicolors
 
 """""""""""""""""""
 " search
@@ -112,7 +114,7 @@ noremap <C-n> :NERDTreeToggle<CR>
 "   vimwiki
 """"""""""""""""""""""""""""""""""""""""
 let g:vimwiki_list = [{
-            \ 'path': 'E:\kalashnikov\notes',
+            \ 'path': '~/notes/',
             \ 'index': 'home',
             \ 'syntax': 'markdown',
             \ 'ext': '.md',
@@ -132,14 +134,14 @@ function InitIO()
 endfunction
 
 function! InitCP()
-    exec "%!more E:\\kalashnikov\\prog\\competitive\\template.cpp"
+    exec "%!cat ~/prog/competitive/template.cpp"
     write
 endfunction
 
 function! AutoTest()
     exec "!g++ ".shellescape("%")
-    exec "!.\\a.exe < in > out"
-    exec "!del .\\a.exe"
+    exec "!./a.out < in > out"
+    exec "!rm a.out"
 endfunction
 
 autocmd filetype cpp nnoremap <Leader>cp :call InitCP()<CR>
@@ -163,12 +165,9 @@ let g:vim_markdown_math = 1 " enable LaTeX math
 " vim startify
 """"""""""""""""""""""""""""""""""""""""
 let g:startify_bookmarks = [
-            \ 'C:\Users\Mandee\AppData\Local\nvim\',
-            \ 'E:\kalashnikov\prog\',
-            \ 'E:\kalashnikov\prog\competitive\',
-            \ 'E:\kalashnikov\',
-            \ 'E:\kalashnikov\dotfiles\',
-            \ 'E:\kalashnikov\jour\',
+            \ '~/.config/nvim/',
+            \ '~/prog',
+            \ '~/prog/competitive',
             \ 'E:\kalashnikov\notes\'
             \]
 

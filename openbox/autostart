@@ -1,0 +1,2 @@
+nitrogen --restore & 
+setxkbmap -option caps:escape &
