@@ -7,6 +7,7 @@ Plug 'preservim/nerdtree'
 Plug 'vimwiki/vimwiki'
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-startify'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " Writing
 Plug 'junegunn/goyo.vim'
@@ -18,7 +19,12 @@ Plug 'plasticboy/vim-markdown'
  
 " Asthetics
 Plug 'fxn/vim-monochrome' 
-Plug 'ryanoasis/vim-devicons'
+Plug 'vim-scripts/wombat256.vim'
+Plug 'victorze/foo'
+Plug 'sheerun/vim-wombat-scheme'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'Jorengarenar/vim-darkness'
+Plug 'owickstrom/vim-colors-paramount'
 
 call plug#end()
 
@@ -58,8 +64,8 @@ set undofile " enable saving undo history to a file
 set autochdir " set current directory to the file currently editing
 
 " set system clipboard
-inoremap <C-v>  <C-O>:set paste<CR><C-r>+ <C-O>:set nopaste<CR><left>
-vnoremap <C-c> "+y
+"inoremap <C-v>  <C-O>:set paste<CR><C-r>+ <C-O>:set nopaste<CR><left>
+"vnoremap <C-c> "+y
 
 nnoremap <Leader>st :Startify<CR>
 
@@ -75,13 +81,13 @@ cnoremap <C-BS> <C-w>
 nnoremap <Leader>tt :FloatermToggle<CR>
 
 " enable colors in console nvim
-set termguicolors
+"set termguicolors
 
 """""""""""""""""""
 " search
 """""""""""""""""""
 set showcmd " Show (partial) command in status line.
-set showmatch " Show matching brackets.
+set noshowmatch " Show matching brackets.
 set ignorecase " Do case insensitive matching
 "set smartcase› › " Do smart case matching
 set incsearch " Incremental search
@@ -89,13 +95,28 @@ set incsearch " Incremental search
 "set hidden›› " Hide buffers when they are abandoned
 set mouse=a
 set hlsearch
-nnoremap <C-l> :set hlsearch!<CR>
+nnoremap <leader>l :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
 
 
 """""""""""""""""""""""""""""""""""""""
 "   colorscheme
 """""""""""""""""""""""""""""""""""""""
-colorscheme monochrome
+function! AdaptColorscheme()
+    highlight clear CursorLine
+    highlight Normal ctermbg=none guibg=none
+    highlight LineNr ctermbg=none guibg=none
+    highlight Folded ctermbg=none guibg=none
+    highlight NonText ctermbg=none guibg=none
+    highlight SpecialKey ctermbg=none guibg=none
+    highlight VertSplit ctermbg=none guibg=none
+    highlight SignColumn ctermbg=none guibg=none
+endfunction
+
+autocmd ColorScheme * call AdaptColorscheme()
+
+set termguicolors
+colorscheme wombat256mod
+
 
 
 """""""""""""""""""""""""""""""""""""""
@@ -134,7 +155,7 @@ function InitIO()
 endfunction
 
 function! InitCP()
-    exec "%!cat ~/prog/competitive/template.cpp"
+    exec "%!cat ~/projects/competitive/template.cpp"
     write
 endfunction
 
@@ -166,9 +187,9 @@ let g:vim_markdown_math = 1 " enable LaTeX math
 """"""""""""""""""""""""""""""""""""""""
 let g:startify_bookmarks = [
             \ '~/.config/nvim/',
-            \ '~/prog',
-            \ '~/prog/competitive',
-            \ 'E:\kalashnikov\notes\'
+            \ '~/projects/',
+            \ '~/projects/competitive/',
+            \ '~/notes/'
             \]
 
 let g:startify_lists = [

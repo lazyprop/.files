@@ -36,7 +36,7 @@
 *.color15:      #c5c8c6
 
 ! fonts
-*.font: xft:Source Code Pro:size=12, xft:Noto Emoji
+*.font: xft:Source Code Pro:size=12
 *.letterSpace: 1
 
 ! disable scrollbar. scrollbar is unsexy

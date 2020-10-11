@@ -8,4 +8,7 @@
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
-alias dots='/usr/bin/git --git-dir=$HOME/dots/ --work-tree=$HOME'
+alias dots="~/dotfiles"
+alias ttrv="ttrv --enable-media"
+
+eval "$(thefuck --alias)"
