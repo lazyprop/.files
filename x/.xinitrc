@@ -41,10 +41,11 @@ xclock -geometry 50x50-1+1 &
 #exec xterm -geometry 80x66+0+0 -name login &
 nitrogen --restore &
 setxkbmap -option caps:escape &
+picom &
 
 while true
 do
-    xsetroot -name "$(date "+%R - %a %e %b %y")"
+    xsetroot -name " $(date "+%R - %a %e %b %y")"
 	sleep 1m
 done &
 
