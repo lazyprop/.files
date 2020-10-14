@@ -45,4 +45,4 @@ do
     xsetroot -name " $(date "+%R - %a %e %b %y")"
 	sleep 1m
 done &
-exec dwm &
+exec dwm
