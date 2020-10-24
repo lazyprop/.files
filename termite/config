@@ -23,7 +23,7 @@ scrollback_lines = 10000
 #browser = xdg-open
 
 # "system", "on" or "off"
-#cursor_blink = system
+cursor_blink = off
 
 # "block", "underline" or "ibeam"
 #cursor_shape = block
@@ -48,7 +48,7 @@ scrollback_lines = 10000
 
 foreground = #ffffff
 #foreground_bold = #ffffff
-background = #000000
+background = rgba(0, 0, 0, 0.95)
 
 # 20% background transparency (requires a compositor)
 #background = rgba(63, 63, 63, 0.8)

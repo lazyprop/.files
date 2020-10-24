@@ -40,6 +40,8 @@ xclock -geometry 50x50-1+1 &
 nitrogen --restore &
 setxkbmap -option caps:escape &
 picom &
+VBoxClient-all &
+dunst &
 while true
 do
     xsetroot -name " $(date "+%R - %a %e %b %y")"
