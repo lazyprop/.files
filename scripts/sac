@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# [s]creenshot [a]ll to [c]lipboard
+maim | xclip -selection clipboard -t image/png
+notify-send "🖼️ Screenshot copied to clipboard 📋."

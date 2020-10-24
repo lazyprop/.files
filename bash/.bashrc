@@ -14,8 +14,8 @@ alias ttrv="ttrv --enable-media"
 eval "$(thefuck --alias)"
 
 # replace coreutils with rust alternatives
-#alias cat="bat"
-#alias ls="exa"
+alias cat="bat"
+alias ls="exa"
 #alias find="fd"
 #alias grep="rg"
-#alias rm="trash"
+alias rm="trash"

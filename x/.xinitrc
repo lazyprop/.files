@@ -39,7 +39,7 @@ xclock -geometry 50x50-1+1 &
 #exec xterm -geometry 80x66+0+0 -name login &
 nitrogen --restore &
 setxkbmap -option caps:escape &
-picom &
+picom -b &
 VBoxClient-all &
 dunst &
 while true
