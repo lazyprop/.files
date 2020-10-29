@@ -8,6 +8,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-startify'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 
 " Writing
 Plug 'junegunn/goyo.vim'
@@ -62,6 +64,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 set undofile " enable saving undo history to a file
 set autochdir " set current directory to the file currently editing
+set autoread "  autoload file changes
 
 " set system clipboard
 "inoremap <C-v>  <C-O>:set paste<CR><C-r>+ <C-O>:set nopaste<CR><left>
@@ -155,7 +158,7 @@ function InitIO()
 endfunction
 
 function! InitCP()
-    exec "%!cat ~/projects/competitive/template.cpp"
+    exec "%!cat ~/coolstuff/competitive/template.cpp"
     write
 endfunction
 
