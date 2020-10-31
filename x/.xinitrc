@@ -41,10 +41,5 @@ nitrogen --restore &
 setxkbmap -option caps:escape &
 picom -b &
 VBoxClient-all &
-dunst &
-while true
-do
-    xsetroot -name " $(date "+%R - %a %e %b %y")"
-	sleep 1m
-done &
+goblocks &
 exec dwm

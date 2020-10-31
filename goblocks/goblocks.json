@@ -1,0 +1,30 @@
+{
+	"separator": " | ",
+	"actions": 
+	[
+		{
+			"prefix": "",
+			"updateSignal": "35",
+			"command": "#Date",		
+			"format": "15:04 | Mon 02 Jan",		
+			"timer": "1m"
+		},
+		{
+			"prefix": "Mem: ",
+			"updateSignal": "37",
+			"command": "#Memory",
+			"suffix": "%",
+			"format": "%.1f",		
+			"timer": "2s"
+		},
+		{
+			"prefix": "CPU: ",
+			"updateSignal": "38",
+			"command": "#Cpu",
+			"suffix": "%",
+			"format": "%.1f",		
+			"timer": "2s"
+		}
+	]
+
+}

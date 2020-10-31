@@ -1,0 +1,7 @@
+#!/bin/bash
+curl $1 > /tmp/imview_temp
+if pgrep "sxiv"; then
+    echo "instance already running"
+else
+    sxiv /tmp/imview_temp
+fi

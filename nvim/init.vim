@@ -28,6 +28,11 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'Jorengarenar/vim-darkness'
 Plug 'owickstrom/vim-colors-paramount'
 
+
+" games
+Plug 'rbtnn/vim-game_engine'
+Plug 'rbtnn/vim-mario'
+
 call plug#end()
 
 
@@ -158,7 +163,7 @@ function InitIO()
 endfunction
 
 function! InitCP()
-    exec "%!cat ~/coolstuff/competitive/template.cpp"
+    exec "%!cat ~/play/competitive/template.cpp"
     write
 endfunction
 
