@@ -19,3 +19,7 @@ alias ls="exa"
 #alias find="fd"
 #alias grep="rg"
 alias rm="trash"
+
+# map ctrl+bksp to delete previous word
+stty werase undef
+bind '"\b":backward-kill-word'

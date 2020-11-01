@@ -81,9 +81,9 @@ nnoremap <Leader>st :Startify<CR>
 tnoremap <Esc> <C-\><C-n>
 
 " use ctrl+backspace to delete previous word
-inoremap <C-BS> <C-w>
-tnoremap <C-BS> <C-w>
-cnoremap <C-BS> <C-w>
+inoremap <C-h> <C-w>
+tnoremap <C-h> <C-w>
+cnoremap <C-h> <C-w>
 
 " use <Leader>tt to toggle floating terminal
 nnoremap <Leader>tt :FloatermToggle<CR>
