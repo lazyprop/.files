@@ -28,7 +28,6 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'Jorengarenar/vim-darkness'
 Plug 'owickstrom/vim-colors-paramount'
 
-
 " games
 Plug 'rbtnn/vim-game_engine'
 Plug 'rbtnn/vim-mario'
@@ -88,8 +87,38 @@ cnoremap <C-h> <C-w>
 " use <Leader>tt to toggle floating terminal
 nnoremap <Leader>tt :FloatermToggle<CR>
 
-" enable colors in console nvim
-"set termguicolors
+" make Y consistent with C and D
+nnoremap Y y$
+
+
+""""""""""""""""""""""""""""""""""""""""
+" movement
+""""""""""""""""""""""""""""""""""""""""
+" make n always search forward and N backward
+nnoremap <expr> n 'Nn'[v:searchforward]
+nnoremap <expr> N 'nN'[v:searchforward]
+
+" make ; always find forward and , backward
+nnoremap <expr> ; getcharsearch().forward ? ';' : ','
+nnoremap <expr> , getcharsearch().forward ? ',' : ';'
+
+" make J, K, L, and H move the cursor MORE.
+nnoremap J }
+nnoremap K {
+nnoremap L $
+nnoremap H ^
+
+" make <c-j>, <c-k>, <c-l>, and <c-h> scroll the screen.
+nnoremap <c-j> <c-e>
+nnoremap <c-k> <c-y>
+nnoremap <c-l> zl
+nnoremap <c-h> zh
+
+" make <a-j>, <a-k>, <a-l>, and <a-h> move to window.
+nnoremap <a-j> <c-w>j
+nnoremap <a-k> <c-w>k
+nnoremap <a-l> <c-w>l
+nnoremap <a-h> <c-w>h
 
 """""""""""""""""""
 " search
@@ -124,7 +153,6 @@ autocmd ColorScheme * call AdaptColorscheme()
 
 set termguicolors
 colorscheme wombat256mod
-
 
 
 """""""""""""""""""""""""""""""""""""""

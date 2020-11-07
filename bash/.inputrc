@@ -8,4 +8,5 @@ $if mode=vi
     set keymap vi-insert
     # keymaps for insert mode
     Control-l: clear-screen 
+
 $endif

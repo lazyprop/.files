@@ -23,3 +23,5 @@ alias rm="trash"
 # map ctrl+bksp to delete previous word
 stty werase undef
 bind '"\b":backward-kill-word'
+alias cp="/usr/local/bin/advcp -g"
+alias mv="/usr/local/bin/advmv -g"
