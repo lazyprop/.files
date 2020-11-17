@@ -1,3 +1,3 @@
-GuiFont! Source\ Code\ Pro:h11
+GuiFont! Source\ Code\ Pro:h16
 GuiTabline 0
 GuiPopupmenu 0

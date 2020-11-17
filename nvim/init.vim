@@ -34,7 +34,6 @@ Plug 'rbtnn/vim-mario'
 
 call plug#end()
 
-
 """""""""""""""""""""""""""""""""""""""
 "   general
 """""""""""""""""""""""""""""""""""""""
@@ -48,7 +47,6 @@ set encoding=UTF-8
 set noswapfile " swapfiles are unnecessary and a PITA
 set nowrap
 
-" enable filetype detection, filetype plugin loading and indentation
 filetype plugin indent on
 
 " indentation
@@ -70,12 +68,6 @@ set undofile " enable saving undo history to a file
 set autochdir " set current directory to the file currently editing
 set autoread "  autoload file changes
 
-" set system clipboard
-"inoremap <C-v>  <C-O>:set paste<CR><C-r>+ <C-O>:set nopaste<CR><left>
-"vnoremap <C-c> "+y
-
-nnoremap <Leader>st :Startify<CR>
-
 " use <Esc> to exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 
@@ -94,14 +86,6 @@ nnoremap Y y$
 """"""""""""""""""""""""""""""""""""""""
 " movement
 """"""""""""""""""""""""""""""""""""""""
-" make n always search forward and N backward
-nnoremap <expr> n 'Nn'[v:searchforward]
-nnoremap <expr> N 'nN'[v:searchforward]
-
-" make ; always find forward and , backward
-nnoremap <expr> ; getcharsearch().forward ? ';' : ','
-nnoremap <expr> , getcharsearch().forward ? ',' : ';'
-
 " make J, K, L, and H move the cursor MORE.
 nnoremap J }
 nnoremap K {
@@ -132,13 +116,21 @@ set incsearch " Incremental search
 "set hidden›› " Hide buffers when they are abandoned
 set mouse=a
 set hlsearch
+
 nnoremap <leader>l :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
 
+" make n always search forward and N backward
+nnoremap <expr> n 'Nn'[v:searchforward]
+nnoremap <expr> N 'nN'[v:searchforward]
+
+" make ; always find forward and , backward
+nnoremap <expr> ; getcharsearch().forward ? ';' : ','
+nnoremap <expr> , getcharsearch().forward ? ',' : ';'
 
 """""""""""""""""""""""""""""""""""""""
 "   colorscheme
 """""""""""""""""""""""""""""""""""""""
-function! AdaptColorscheme()
+function! RemoveBg()
     highlight clear CursorLine
     highlight Normal ctermbg=none guibg=none
     highlight LineNr ctermbg=none guibg=none
@@ -149,7 +141,7 @@ function! AdaptColorscheme()
     highlight SignColumn ctermbg=none guibg=none
 endfunction
 
-autocmd ColorScheme * call AdaptColorscheme()
+autocmd ColorScheme * call RemoveBg()
 
 set termguicolors
 colorscheme wombat256mod
@@ -221,6 +213,7 @@ let g:vim_markdown_math = 1 " enable LaTeX math
 """"""""""""""""""""""""""""""""""""""""
 " vim startify
 """"""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>st :Startify<CR>
 let g:startify_bookmarks = [
             \ '~/.config/nvim/',
             \ '~/projects/',
