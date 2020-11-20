@@ -42,4 +42,4 @@ setxkbmap -option caps:escape &
 picom -b &
 VBoxClient-all &
 goblocks &
-exec dwm
+exec xmonad
