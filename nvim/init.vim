@@ -216,8 +216,8 @@ let g:vim_markdown_math = 1 " enable LaTeX math
 nnoremap <Leader>st :Startify<CR>
 let g:startify_bookmarks = [
             \ '~/.config/nvim/',
-            \ '~/projects/',
-            \ '~/projects/competitive/',
+            \ '~/play/',
+            \ '~/play/competitive/',
             \ '~/notes/'
             \]
 

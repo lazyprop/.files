@@ -39,7 +39,7 @@ xclock -geometry 50x50-1+1 &
 #exec xterm -geometry 80x66+0+0 -name login &
 nitrogen --restore &
 setxkbmap -option caps:escape &
-picom -b &
+picom -b --no-fading-openclose --no-fading-destroyed-argb &
 VBoxClient-all &
 goblocks &
-exec xmonad
+exec awesome
