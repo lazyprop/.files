@@ -3,5 +3,5 @@
 # [s]creenshot [a]ll to [f]ile
 base="pictures/screenshots"
 file="all-$(date '+%Y%m%d-%H%M-%S').png"
-maim "$HOME/$base/$file"
+maim $@ "$HOME/$base/$file"
 notify-send "🖼️ Screenshot saved in ~/$base."

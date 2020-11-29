@@ -3,5 +3,5 @@
 # [s]creenshot [s]election to [f]ile
 base="pictures/screenshots"
 file="sel-$(date '+%Y%m%d-%H%M-%S').png"
-maim -s "$HOME/$base/$file"
+maim -s $@ "$HOME/$base/$file"
 notify-send "🖼️ Screenshot saved in ~/$base."
