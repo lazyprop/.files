@@ -323,8 +323,10 @@ globalkeys = gears.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+    -- awful.key({ modkey }, "p", function() menubar.show() end,
+              -- {description = "show the menubar", group = "launcher"})
+    -- use demnu instead of awesome menubar
+    awful.key({ modkey }, "p", function() awful.util.spawn_with_shell("dmenu_run") end)
 )
 
 clientkeys = gears.table.join(

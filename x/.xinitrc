@@ -41,5 +41,4 @@ nitrogen --restore &
 setxkbmap -option caps:escape &
 picom -b --no-fading-openclose --no-fading-destroyed-argb &
 VBoxClient-all &
-goblocks &
 exec awesome
