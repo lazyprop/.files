@@ -3,7 +3,7 @@ configuration {
     /*	width: 50;*/
     /*	lines: 15;*/
     /*	columns: 1;*/
-    /*	font: "mono 12";*/
+    	font: "mono 16";
     /*	bw: 1;*/
     /*	location: 0;*/
     /*	padding: 5;*/
@@ -19,7 +19,7 @@ configuration {
     /*	run-shell-command: "{terminal} -e {cmd}";*/
     /*	window-command: "wmctrl -i -R {window}";*/
     /*	window-match-fields: "all";*/
-    	icon-theme: "arthur";
+    /*  icon-theme: "arthur";*/
     /*	drun-match-fields: "name,generic,exec,categories,keywords";*/
     /*	drun-categories: ;*/
     /*	drun-show-actions: false;*/
@@ -46,7 +46,7 @@ configuration {
     /*	separator-style: "dash";*/
     	hide-scrollbar: true;
     /*	fullscreen: false;*/
-    /*	fake-transparency: false;*/
+    	fake-transparency: false;
     /*	dpi: -1;*/
     /*	threads: 0;*/
     /*	scrollbar-width: 8;*/
@@ -55,7 +55,7 @@ configuration {
     /*	window-format: "{w}    {c}   {t}";*/
     /*	click-to-exit: true;*/
     /*	show-match: true;*/
-    /*	theme: ;*/
+    	theme: "arthur";
     /*	color-normal: ;*/
     /*	color-urgent: ;*/
     /*	color-active: ;*/

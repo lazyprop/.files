@@ -18,6 +18,7 @@ Plug 'voldikss/vim-floaterm'
 
 " Languages
 Plug 'plasticboy/vim-markdown'
+Plug 'neovimhaskell/haskell-vim'
  
 " Asthetics
 Plug 'fxn/vim-monochrome' 

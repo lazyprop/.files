@@ -11,7 +11,7 @@ local themes_path = string.format("%s/.config/awesome/themes/", os.getenv("HOME"
 
 local theme = {}
 
-theme.font          = "sans 12"
+theme.font          = "Source Code Pro 12"
 
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#535d6c"
@@ -125,6 +125,12 @@ theme.awesome_icon = theme_assets.awesome_icon(
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
+
+-- {{{ Notification
+theme.notification_icon_size = 100
+theme.notification_max_width = 350
+theme.notifcation_margin = 20
+-- }}}
 
 return theme
 

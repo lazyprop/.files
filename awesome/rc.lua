@@ -227,7 +227,7 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    --awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -325,8 +325,8 @@ globalkeys = gears.table.join(
     -- Menubar
     -- awful.key({ modkey }, "p", function() menubar.show() end,
               -- {description = "show the menubar", group = "launcher"})
-    -- use demnu instead of awesome menubar
-    awful.key({ modkey }, "p", function() awful.util.spawn_with_shell("dmenu_run") end)
+    -- use rofi instead of awesome menubar
+    awful.key({ modkey }, "p", function() awful.util.spawn_with_shell("rofi -show run") end)
 )
 
 clientkeys = gears.table.join(
