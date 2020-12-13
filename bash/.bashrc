@@ -21,9 +21,9 @@ alias ls="exa"
 alias rm="trash"
 
 # map ctrl+bksp to delete previous word
-stty werase undef
+# stty werase undef
 bind '"\b":backward-kill-word'
-alias cp="/usr/local/bin/advcp -g"
+alias cp="/usr/local/bin/advcp -g -r"
 alias mv="/usr/local/bin/advmv -g"
 
 alias sshsync="rsync -av --progress -e 'ssh -p 8022'"

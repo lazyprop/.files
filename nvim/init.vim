@@ -10,6 +10,7 @@ Plug 'mhinz/vim-startify'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " Writing
 Plug 'junegunn/goyo.vim'
@@ -82,6 +83,8 @@ nnoremap <Leader>tt :FloatermToggle<CR>
 
 " make Y consistent with C and D
 nnoremap Y y$
+
+set textwidth=80
 
 
 """"""""""""""""""""""""""""""""""""""""
