@@ -20,8 +20,13 @@ Plug 'voldikss/vim-floaterm'
 " Languages
 Plug 'plasticboy/vim-markdown'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'jsborjesson/vim-uppercase-sql' " technically not a programming language
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
  
-" Asthetics
+" asthetics
 Plug 'fxn/vim-monochrome' 
 Plug 'vim-scripts/wombat256.vim'
 Plug 'victorze/foo'
@@ -175,7 +180,7 @@ let g:vimwiki_list = [{
             \ }]
 
 " don't consider non vimwiki .md files .vimwiki files
-let g:vimwiki_global_ext = 0 
+"let g:vimwiki_global_ext = 0 
 
 
 """"""""""""""""""""""""""""""""""""""""
@@ -240,3 +245,24 @@ augroup writing
     autocmd FileType text,txt call pencil#init()
     autocmd FileType vimwiki call pencil#init()
 augroup end
+
+""""""""""""""""""""""""""""""""""""""""
+" latex
+""""""""""""""""""""""""""""""""""""""""
+function! ToPdf()
+    exec "!pandoc -s -f markdown -t html -c style.css -o output.pdf ".shellescape("%")
+endfunction
+
+autocmd filetype markdown,md,mkd nnoremap <Leader>mk :call ToPdf()<CR>
+
+""""""""""""""""""""""""""""""""""""""""
+" language
+""""""""""""""""""""""""""""""""""""""""
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ }
+
+" Automatically start language servers.
+let g:LanguageClient_autoStart = 1
+
+nnoremap <silent> <Leader>d :call LanguageClient_textDocument_hover()<CR>

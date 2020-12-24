@@ -29,3 +29,8 @@ alias mv="/usr/local/bin/advmv -g"
 alias sshsync="rsync -av --progress -e 'ssh -p 8022'"
 
 export MANPAGER='nvim +Man!'
+
+# tab multiplexer configuration: https://github.com/austinjones/tab-rs/
+source "/home/iv/.local/share/tab/completion/tab.bash"
+# end tab configuration
+

@@ -1,0 +1,4 @@
+editMode: Vi
+keyseq: "\b" ctrl-backspace
+bind: ctrl-backspace ctrl-w
+
