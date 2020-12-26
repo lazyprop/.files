@@ -28,4 +28,7 @@ alias mv="/usr/local/bin/advmv -g"
 
 alias sshsync="rsync -av --progress -e 'ssh -p 8022'"
 
+# cleanup ~/
+alias wget="wget --hsts-file='$XDG_CACHE_HOME/wget-hsts'"
+
 export MANPAGER='nvim +Man!'
