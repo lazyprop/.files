@@ -172,7 +172,7 @@ noremap <C-n> :NERDTreeToggle<CR>
 "   vimwiki
 """"""""""""""""""""""""""""""""""""""""
 let g:vimwiki_list = [{
-            \ 'path': '~/notes/',
+            \ 'path': '~/documents/notes/',
             \ 'index': 'home',
             \ 'syntax': 'markdown',
             \ 'ext': '.md',
@@ -280,3 +280,12 @@ endfunction
 
 inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 inoremap <s-Tab> <C-P>
+
+""""""""""""""""""""""""""""""""""""""""
+" assembly
+""""""""""""""""""""""""""""""""""""""""
+function! CompileAsm()
+    exec "!gcc -S -fverbose-asm  -fno-stack-protector test.c"
+endfunction
+
+autocmd filetype asm nnoremap <Leader>mk :call CompileAsm()<CR><CR>

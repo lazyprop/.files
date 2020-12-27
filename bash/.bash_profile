@@ -21,7 +21,7 @@ export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export LESSHISTFILE=-
-#export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonstartup"
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonstartup"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export XAUTHORITY="$XDG_RUNTIME_DIR/xauthority"
 
