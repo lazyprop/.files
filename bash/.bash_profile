@@ -25,7 +25,12 @@ export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonstartup"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export XAUTHORITY="$XDG_RUNTIME_DIR/xauthority"
 
-export PATH="$PATH:$HOME/.local/bin:$XDG_DATA_HOME/cargo/bin"
+# locale
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+
+export PATH="$PATH:$HOME/.local/bin:$CARGO_HOME/bin"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
