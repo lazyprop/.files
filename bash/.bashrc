@@ -6,7 +6,11 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
+alias l='ls -la'
 PS1='[\u@\h \W]\$ '
+alias term='$TERM &'
+alias r='ranger'
+alias qs='scheme --quiet < '
 
 alias dots="~/dotfiles"
 alias ttrv="ttrv --enable-media"

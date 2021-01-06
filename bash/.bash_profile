@@ -36,3 +36,5 @@ export PATH="$PATH:$HOME/.local/bin:$CARGO_HOME/bin"
 
 startx $XINITRC
 setxkbmap -option caps:escape
+
+export PATH="$HOME/.poetry/bin:$PATH"
