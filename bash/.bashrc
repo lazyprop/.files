@@ -11,6 +11,7 @@ PS1='[\u@\h \W]\$ '
 alias term='$TERM &'
 alias r='ranger'
 alias qs='scheme --quiet < '
+alias du='du -h'
 
 alias dots="~/dotfiles"
 alias ttrv="ttrv --enable-media"

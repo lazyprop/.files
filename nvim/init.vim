@@ -7,10 +7,8 @@ Plug 'preservim/nerdtree'
 Plug 'vimwiki/vimwiki'
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-startify'
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'AndrewRadev/splitjoin.vim'
 
 " Writing
 Plug 'junegunn/goyo.vim'
@@ -21,10 +19,6 @@ Plug 'voldikss/vim-floaterm'
 Plug 'plasticboy/vim-markdown'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'jsborjesson/vim-uppercase-sql' " technically not a programming language
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
  
 " asthetics
 Plug 'fxn/vim-monochrome' 
@@ -34,10 +28,6 @@ Plug 'sheerun/vim-wombat-scheme'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'Jorengarenar/vim-darkness'
 Plug 'owickstrom/vim-colors-paramount'
-
-" games
-Plug 'rbtnn/vim-game_engine'
-Plug 'rbtnn/vim-mario'
 
 call plug#end()
 
@@ -97,7 +87,7 @@ set textwidth=80
 """"""""""""""""""""""""""""""""""""""""
 " make J, K, L, and H move the cursor MORE.
 nnoremap J }
-nnoremap K {
+"nnoremap K {
 nnoremap L $
 nnoremap H ^
 
@@ -289,3 +279,9 @@ function! CompileAsm()
 endfunction
 
 autocmd filetype asm nnoremap <Leader>mk :call CompileAsm()<CR><CR>
+
+
+""""""""""""""""""""""""""""""""""""""""
+" docs
+""""""""""""""""""""""""""""""""""""""""
+command! -nargs=1 Pydoc execute "new | read !pydoc" string(<q-args>)
